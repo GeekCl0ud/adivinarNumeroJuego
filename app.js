@@ -25,10 +25,12 @@ function verificaIntento(){
             condicion ? (cumple) primera opcion : (sino) la otra opcion*/
             editarHTML('p', `Acertaste el numero en ${contadorIntentos} ${(contadorIntentos == 1) ? 'vez' : 'veces'}`);
             document.getElementById('reiniciar').removeAttribute('disabled');
+            document.querySelector('#intentar').setAttribute('disabled', 'true');
         }else{ 
             if(intentosRestantes == 1){ 
                 editarHTML('p', `Fallaste, intentalo nuevamente`);
                 document.getElementById('reiniciar').removeAttribute('disabled');
+                document.querySelector('#intentar').setAttribute('disabled', 'true');
             }else{
                 //El usuario fallo
                     if (numeroUsuario > numeroSecreto){
@@ -51,6 +53,7 @@ function reiniciarJuego(){
     editarHTML('p', `Adivina el numero del 1 al ${numeroMaximo}`);
     condicionesIniciales();
     document.querySelector('#reiniciar').setAttribute('disabled', 'true');
+    document.getElementById('intentar').removeAttribute('disabled');
     return;
 }
 
@@ -60,6 +63,7 @@ function condicionesIniciales() {
     editarHTML('p', `Adivina el numero del 1 al ${numeroMaximo}`);
     numeroSecreto = numeroRandom();
     contadorIntentos = 1;
+    intentosRestantes = 4;
     return;
 }
 
